@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <!-- Tell the browser it's a PWA -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Tell iOS it's a PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Make sure theme-color is defined -->
+    <meta name="theme-color" content="#536878">
+
+    <title>React App</title>
+
+    <meta name="description" content="A cross-browser solution for the JavaScript Notifications API">
+    <meta name="keywords" content="push,notifications,javascript,jquery,desktop,mobile,js,notification,shim,wrapper,nickersoft">
+    <meta name="author" content="Tyler Nickerson">
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/bulma.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/typicons.css" media="screen">
+</head>
+<body>
+<!--  <nav class="nav has-shadow">
+    <div class="container">
+      <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <a class="nav-item is-tab" href="wwww.google.com">Oi Mundo</a>
+      <a class="nav-item is-tab" href="wwww.google.com">Oi Munda</a>
+
+    </div>
+  </nav>
+    <main>
+      <div class="card positive" id="b2u">
+        <div class="card-content">
+          <p class="title">BTC - B2U</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <p class="last"><span class="typcn typcn-chart-line-outline"></span>R$ </p>
+            <div class="columns">
+              <div class="small column high"><span class="typcn typcn-arrow-up-thick"></span>R$ </div>
+              <div class="small column low"><span class="typcn typcn-arrow-down-thick"></span>R$ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card negative" id="mercado">
+        <div class="card-content">
+          <p class="title">BTC - Mercado Bitcoin</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <p class="last"><span class="typcn typcn-chart-line-outline"></span>R$ </p>
+            <div class="columns">
+              <div class="small column high"><span class="typcn typcn-arrow-up-thick"></span>R$ </div>
+              <div class="small column low"><span class="typcn typcn-arrow-down-thick"></span>R$ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <section class="buttons">
+        <a class="button" href="https://github.com/Nickersoft/push.js" target="_blank">Github</a>
+        <a class="button" href="https://npmjs.com/package/push.js" target="_blank">NPM</a>
+        <a class="button" href="javascript:void(0);" id="demoButton">Demo</a>
+      </section>
+    </main>
+    <script type="text/javascript" src="js/push.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+  -->
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          }).catch(function(err) {
+            console.log(err)
+          });
+        });
+      } else {
+        console.log('service worker is not supported');
+      }
+    </script>
+</body>
+
+
+
+</html>

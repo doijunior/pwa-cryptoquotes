@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'typicons'; /*a name to be used later*/
+    src: url('../typicons.ttf') format('truetype'); /*URL to font*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+navbar{
+  background-color: #ddaabb;
+}
+
+.card{
+  margin: 20px;
+}
+.card.positive{
+  border-top: 5px solid green;
+}
+
+.card.negative{
+  border-top: 5px solid red;}
