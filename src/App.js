@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import logo from './logo.svg';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { observer } from 'mobx-react';
 import './App.css';
 
 const Page = () => (
@@ -36,37 +37,38 @@ const QuotationCard = (props) => (
       </div>
     </div>
   </div>
+);
+
+const B2UCard = observer(
+  class B2UCard extends React.Component {
+    constructor(props){
+      super(props)
+    }
+
+    componentWillMount(){
+      self = this;
+      axios.get("https://www.bitcointoyou.com/API/ticker.aspx")
+        .then(res => {
+          var date = new Date(res.data.ticker.date * 1000);
+          self.low = res.data.ticker.low;
+          self.quote = res.data.ticker.last;
+          self.high = res.data.ticker.high;
+          self.date =  date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+          self.setState({});
+        })
+        .catch(function(error){
+          console.log(error);
+      });
+    }
+    render(){
+        return (
+          <QuotationCard id="b2u" title="B2U" quote={this.quote}
+            high={this.high} low={this.low} date={this.date}/>
+        )
+    }
+  }
 )
 
-class B2UCard extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {date: '', quote: '', high: '', low: ''}
-  }
-
-  componentDidMount(){
-    self = this;
-    axios.get("https://www.bitcointoyou.com/API/ticker.aspx")
-      .then(res => {
-        var date = new Date(res.data.ticker.date * 1000);
-        self.setState({
-          date: date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear(),
-          quote: res.data.ticker.last,
-          high: res.data.ticker.high,
-          low: res.data.ticker.low
-        });
-      })
-      .catch(function(error){
-        console.log(error);
-    });
-  }
-  render(){
-      return (
-        <QuotationCard id="b2u" title="B2U" quote={this.state.quote}
-          high={this.state.high} low={this.state.low} date={this.state.date}/>
-      )
-  }
-}
 
 const Home = (props) => (
   <Page title="Home"/>
