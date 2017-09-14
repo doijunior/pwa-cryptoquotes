@@ -1,12 +1,4 @@
-import {extendObservable, action} from 'mobx';
-
-//class CardsStore {
-//    cards = observable({
-//      "b2u": {},
-//      "mercado": "xau",
-//      "foxit": {}
-//    });
-//};
+import {extendObservable} from 'mobx';
 
 class CardsStore {
   constructor() {
