@@ -1,27 +1,62 @@
 import React, { Component } from 'react';
-import B2UCard from './components/B2UCard'
-import MercadoBTCCard from './components/MercadoBTCCard'
+import Home from './components/Home';
+import Form from './components/FormOp';
 import './App.css';
+import { Menu, Container } from 'semantic-ui-react';
+import { BrowserRouter, NavLink } from 'react-router-dom';
+import { Route } from 'react-router';
+import OpStore from './stores/OpStore';
+import db from './db';
+
 
 class App extends Component {
+  state = {}
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  componentWillMount(){
+    db.ops.where("id").equals(1).first().then( (ops) =>{
+      OpStore.lastBuy = ops.lastBuy;
+      OpStore.lastSell = ops.lastSell;
+    });
+  }
+
   render() {
     return (
-      <div>
-        <nav className="nav has-shadow">
-          <div className="container">
-            <span className="nav-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+      <BrowserRouter>
+        <div>
+          <Menu>
+            <Menu.Item
+              name='home'
+              active={this.state.activeItem === 'home'}
+              content='Home'
+             as={NavLink} exact to='/'
+              onClick={this.handleItemClick}
+            />
 
-          </div>
-        </nav>
-        <main>
-          <MercadoBTCCard></MercadoBTCCard>
-          <B2UCard></B2UCard>
-        </main>
-      </div>
+            <Menu.Item
+              name='buy'
+              active={this.state.activeItem === 'buy'}
+               as={NavLink} exact to='/buy'
+              content='Compra'
+              onClick={this.handleItemClick}
+            />
+
+            <Menu.Item
+              name='sell'
+              active={this.state.activeItem === 'sell'}
+              content='Venda'
+             as={NavLink} exact to='/sell'
+              onClick={this.handleItemClick}
+            />
+          </Menu>
+          <Container>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/buy" component={(props) => (<Form type="Buy" />)}/>
+            <Route exact path="/sell" component={(props) => (<Form type="Sell" />)}/>
+          </Container>
+        </div>
+      </BrowserRouter>
     );
   }
 }
